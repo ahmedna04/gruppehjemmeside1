@@ -1,0 +1,25 @@
+.forside {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .kort-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .profilkort {
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    padding: 1rem;
+    max-width: 200px;
+    text-align: center;
+  }
+  
+  .profilkort img {
+    max-width: 100%;
+    border-radius: 50%;
+  }
+  

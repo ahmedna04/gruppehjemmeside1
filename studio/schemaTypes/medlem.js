@@ -1,28 +1,53 @@
-const medlem = {
+export default {
     name: 'medlem',
-    title: 'Medlem',
+    title: 'Gruppe­medlem',
     type: 'document',
     fields: [
       {
-        name: 'navn',
+        name: 'name',
         title: 'Navn',
         type: 'string',
       },
       {
-        name: 'rolle',
-        title: 'Rolle',
+        name: 'email',
+        title: 'E-post',
         type: 'string',
       },
       {
-        name: 'bilde',
+        name: 'image',
         title: 'Bilde',
         type: 'image',
-        options: {
-          hotspot: true,
-        },
+        options: { hotspot: true },
+      },
+      {
+        name: 'bio',
+        title: 'Biografi',
+        type: 'text',
+      },
+      {
+        name: 'interests',
+        title: 'Interesser',
+        type: 'array',
+        of: [{ type: 'string' }],
+      },
+      {
+        name: 'logg',
+        title: 'Loggføringer',
+        type: 'array',
+        of: [
+          {
+            type: 'object',
+            fields: [
+              { name: 'text', title: 'Hva gjorde du?', type: 'string' },
+              {
+                name: 'dato',
+                title: 'Dato',
+                type: 'datetime',
+              },
+            ],
+          },
+        ],
       },
     ],
-  }
-  
-  export default medlem
+  };
   

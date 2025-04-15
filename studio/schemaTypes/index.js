@@ -1,3 +1,3 @@
-import medlem from './medlem'
+import medlem from './medlem';
 
-export const schemaTypes = [medlem]
+export const schemaTypes = [medlem];
