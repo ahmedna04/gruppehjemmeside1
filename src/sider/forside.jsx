@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { client } from "../sanity-client";
+import client from '../sanity.client'
 import "./forside.css";
 
-function forside() {
+function Forside() {
   const [medlemmer, settMedlemmer] = useState([]);
 
   useEffect(() => {
@@ -39,4 +39,4 @@ function forside() {
   );
 }
 
-export default forside;
+export default Forside;
