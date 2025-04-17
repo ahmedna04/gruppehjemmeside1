@@ -51,7 +51,7 @@ function Medlem() {
             <li key={i}>{interest}</li>
           ))}
         </ul>
-        <h3>Loggføringer:</h3>
+        <h3>Arbeidslogg</h3>
         <ul>
           {medlem.logg?.map((entry, i) => (
             <li key={i}>

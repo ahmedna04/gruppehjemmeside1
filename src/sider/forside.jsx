@@ -16,15 +16,20 @@ function Forside() {
           asset -> {
             url
           }
+        },
+        logg[] {
+          text,
+          dato
         }
       }`)
-      .then(data => settMedlemmer(data))
+      .then((data) => settMedlemmer(data))
       .catch(console.error);
   }, []);
 
   return (
     <div className="forside">
-      <h1>Gruppemedlemmer</h1>
+      <h1>Gruppehjemmeside</h1>
+
       <div className="kort-container">
         {medlemmer.map((person) => (
           <Link to={`/medlem/${person._id}`} key={person._id} className="profilkort">
@@ -35,6 +40,18 @@ function Forside() {
             <p>{person.email}</p>
           </Link>
         ))}
+      </div>
+
+      <div className="logg-container">
+        <h2>Arbeidslogg</h2>
+        {medlemmer.map((person) =>
+          person.logg?.map((logg, index) => (
+            <div key={`${person._id}-${index}`} className="logg-post">
+              <strong>{person.name}</strong>: {logg.text} <br />
+              <em>{new Date(logg.dato).toLocaleDateString()}</em>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

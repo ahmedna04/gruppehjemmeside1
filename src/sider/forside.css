@@ -30,8 +30,22 @@
     margin: 0;
     padding: 0;
   }
-  
+
   .forside {
     padding: 20px;
   }
+  .logg-container {
+    margin-top: 2rem;
+    background-color: #fdfdfd;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .logg-post {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+  }
+  
     
