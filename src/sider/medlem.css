@@ -1,0 +1,12 @@
+.medlem-side {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .medlem-side img {
+    width: 200px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  

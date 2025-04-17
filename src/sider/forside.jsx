@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import client from '../sanity.client'
+import client from "../sanity.client";
 import "./forside.css";
 
 function Forside() {
@@ -7,11 +8,11 @@ function Forside() {
 
   useEffect(() => {
     client
-      .fetch(`*[_type == "gruppemedlem"]{
+      .fetch(`*[_type == "medlem"]{
         _id,
-        navn,
-        epost,
-        bilde {
+        name,
+        email,
+        image {
           asset -> {
             url
           }
@@ -26,13 +27,13 @@ function Forside() {
       <h1>Gruppehjemmeside</h1>
       <div className="kort-container">
         {medlemmer.map((person) => (
-          <div key={person._id} className="profilkort">
-            {person.bilde?.asset?.url && (
-              <img src={person.bilde.asset.url} alt={person.navn} />
+          <Link to={`/medlem/${person._id}`} key={person._id} className="profilkort">
+            {person.image?.asset?.url && (
+              <img src={person.image.asset.url} alt={person.name} />
             )}
-            <h2>{person.navn}</h2>
-            <p>{person.epost}</p>
-          </div>
+            <h2>{person.name}</h2>
+            <p>{person.email}</p>
+          </Link>
         ))}
       </div>
     </div>
