@@ -1,58 +1,65 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import client from "../sanity.client";
-import "./medlem.css"; 
+import "./medlem.css";
 
 function Medlem() {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [medlem, settMedlem] = useState(null);
 
   useEffect(() => {
     client
-      .fetch(`*[_type == "gruppemedlem" && _id == $id][0]{
-        navn,
-        epost,
-        bilde {
-          asset -> {
-            url
+      .fetch(
+        `*[_type == "medlem" && _id == $id][0]{
+          name,
+          email,
+          image {
+            asset -> {
+              url
+            }
+          },
+          bio,
+          interests,
+          logg[] {
+            text,
+            dato
           }
-        },
-        biografi,
-        interesser[],
-        logg[] {
-          _key,
-          dato,
-          tekst
-        }
-      }`, { id })
-      .then(data => settMedlem(data))
+        }`,
+        { id }
+      )
+      .then((data) => settMedlem(data))
       .catch(console.error);
   }, [id]);
 
-  if (!medlem) return <p>Laster...</p>;
+  if (!medlem) {
+    return <div>Laster...</div>;
+  }
 
   return (
-    <div className="medlem">
-      <h1>{medlem.navn}</h1>
-      <img src={medlem.bilde?.asset?.url} alt={medlem.navn} />
-      <p><strong>E-post:</strong> {medlem.epost}</p>
-      <p><strong>Biografi:</strong> {medlem.biografi}</p>
-
-      <h3>Interesser</h3>
-      <ul>
-        {medlem.interesser?.map((interesse, index) => (
-          <li key={index}>{interesse}</li>
-        ))}
-      </ul>
-
-      <h3>Logg</h3>
-      <ul>
-        {medlem.logg?.map((innslag) => (
-          <li key={innslag._key}>
-            <strong>{innslag.dato}:</strong> {innslag.tekst}
-          </li>
-        ))}
-      </ul>
+    <div className="medlem-side">
+      <Link to="/">Hjem</Link>
+      <div className="medlem-info">
+        {medlem.image?.asset?.url && (
+          <img src={medlem.image.asset.url} alt={medlem.name} />
+        )}
+        <h2>{medlem.name}</h2>
+        <p><strong>E-post:</strong> {medlem.email}</p>
+        <p><strong>Biografi:</strong> {medlem.bio}</p>
+        <p><strong>Interesser:</strong></p>
+        <ul>
+          {medlem.interests?.map((interest, i) => (
+            <li key={i}>{interest}</li>
+          ))}
+        </ul>
+        <h3>Loggføringer:</h3>
+        <ul>
+          {medlem.logg?.map((entry, i) => (
+            <li key={i}>
+              <strong>{new Date(entry.dato).toLocaleDateString()}</strong>: {entry.text}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

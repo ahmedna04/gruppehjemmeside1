@@ -1,12 +1,19 @@
 .medlem-side {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  .medlem-side img {
-    width: 200px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
-  
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.medlem-info img {
+  max-width: 150px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.medlem-info h2 {
+  margin-top: 0;
+}
+
+.medlem-info ul {
+  padding-left: 20px;
+}

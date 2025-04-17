@@ -24,7 +24,7 @@ function Forside() {
 
   return (
     <div className="forside">
-      <h1>Gruppehjemmeside</h1>
+      <h1>Gruppemedlemmer</h1>
       <div className="kort-container">
         {medlemmer.map((person) => (
           <Link to={`/medlem/${person._id}`} key={person._id} className="profilkort">
